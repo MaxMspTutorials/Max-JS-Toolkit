@@ -2,6 +2,7 @@
 Max JS Toolkit
 */
 //Midi Clip Functions:
+
 //removes all notes in the Midi Clip passed as an argument
 function removeAllClipNotes(liveObject) {
     liveObject.call("select_all_notes");
@@ -9,10 +10,10 @@ function removeAllClipNotes(liveObject) {
     liveObject.call("notes",0);
     liveObject.call("done");
 }
+
 //query's the clip passed an arguement and returns all midi notes in an Array object
 function getClipNotes(liveObject) {
     tempNoteArray = new Array();
-    routeList = new Array();
     liveObject.call("select_all_notes");
     var selectedNotes = liveObject.call("get_selected_notes");
     liveObject.call("deselect_all_notes");
@@ -21,11 +22,7 @@ function getClipNotes(liveObject) {
         tempArray[2] = Number(tempArray[2]).toFixed(3) * 1; //FUCK YOU JS
         tempArray[3] = Number(tempArray[3]).toFixed(3) * 1;
         tempNoteArray.push(tempArray);
-        if (routeList.indexOf(selectedNotes[j+1]) === -1) {
-            routeList.push(selectedNotes[j+1]);
-            //debug("New midiValue " + selectedNotes[j+1]);
-        }
-    }   
+    }
     return tempNoteArray;
 }
 
